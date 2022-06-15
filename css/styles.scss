@@ -1,0 +1,29 @@
+.container {
+    max-width: 600px;
+    max-height: 400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+img {
+    width: 400px;
+    height: 300px;
+    margin: 0;
+}
+
+.slider {
+    overflow: hidden;
+    width: 400px;
+    height: 300px;
+    border: 10px solid black;
+    margin: 30px auto;
+}
+
+.slider-line {
+    width: 3600px;
+    height: 300px;
+    display: flex;
+    position: relative;
+    left: 0;
+}
