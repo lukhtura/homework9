@@ -32,7 +32,6 @@ prevButton.addEventListener('click', () => {
 
 function toNextSLide() {
     count += 1;
-    console.log(count)
     checkButtonAndInterval();
     offset += 400;
     sliderLine.style.left = `${-offset}px`;
