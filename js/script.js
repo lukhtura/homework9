@@ -4,10 +4,10 @@ const sliderLine = document.querySelector('.slider-line');
 prevButton.disabled = true;
 let offset = 0;
 let count = 1;
-let intervalID = setInterval(toNextSLide, 1000);
+let intervalID = setInterval(toNextSLide, 5000);
 
 function startInterval() {
-    intervalID = setInterval(toNextSLide, 1000);
+    intervalID = setInterval(toNextSLide, 5000);
 };
 
 function stopInterval() {
@@ -18,7 +18,9 @@ nextButton.addEventListener('click', () => {
     toNextSLide();
     checkButtonAndInterval();
     stopInterval();
-    startInterval();
+    if (count < 9) {
+        startInterval();
+    };
 });
 
 prevButton.addEventListener('click', () => {
@@ -49,8 +51,8 @@ function checkButtonAndInterval() {
         prevButton.disabled = false
     };
     if (count > 8) {
-        nextButton.disabled = true
         stopInterval();
+        nextButton.disabled = true
     } else if (count !== 9) {
         nextButton.disabled = false
     };
