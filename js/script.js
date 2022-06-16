@@ -1,38 +1,57 @@
 const nextButton = document.querySelector('.next-button');
 const prevButton = document.querySelector('.prev-button');
 const sliderLine = document.querySelector('.slider-line');
-let offset = 0;
 prevButton.disabled = true;
+let offset = 0;
+let count = 1;
+let intervalID = setInterval(toNextSLide, 1000);
+
+function startInterval() {
+    intervalID = setInterval(toNextSLide, 1000);
+};
+
+function stopInterval() {
+    clearInterval(intervalID);
+};
 
 nextButton.addEventListener('click', () => {
     toNextSLide();
-    checkButtonIfSlidesEnd();
+    checkButtonAndInterval();
+    stopInterval();
+    startInterval();
 });
 
 prevButton.addEventListener('click', () => {
     toPreviousSlide();
-    checkButtonIfSlidesEnd();
+    checkButtonAndInterval();
+    stopInterval();
+    startInterval();
 });
 
 function toNextSLide() {
+    count += 1;
+    console.log(count)
+    checkButtonAndInterval();
     offset += 400;
     sliderLine.style.left = `${-offset}px`;
 };
 
 function toPreviousSlide() {
+    count--;
     offset -= 400;
     sliderLine.style.left = `${-offset}px`;
 };
 
-function checkButtonIfSlidesEnd() {
-    if (offset === 0) {
+function checkButtonAndInterval() {
+    if (count === 1) {
         prevButton.disabled = true
     } else {
         prevButton.disabled = false
     };
-    if (offset === 3200) {
+    if (count > 8) {
         nextButton.disabled = true
-    } else if (offset < 3200) {
+        stopInterval();
+    } else if (count !== 9) {
         nextButton.disabled = false
-    }
+    };
 };
